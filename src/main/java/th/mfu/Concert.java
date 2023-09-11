@@ -8,7 +8,7 @@ public class Concert {
     private int id;
     private String title;
     private String performer;
-    private Date date = new Date(); // automatic set date now
+    private Date date;
     private String description;
 
     public Concert() {}

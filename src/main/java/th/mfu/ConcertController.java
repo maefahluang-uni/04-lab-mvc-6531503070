@@ -21,8 +21,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ConcertController {
     // TODO: create hashmap of concerts for storing data
     private HashMap<Integer, Concert> concertMap = new HashMap<>();
-    //TODO: add initbinder to convert date
     private int nextId = 1;
+    
+    // TODO: add initbinder to convert date
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
 
     @GetMapping("/concerts")
     public String listConcerts(Model model) {
